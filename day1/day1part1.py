@@ -1,7 +1,12 @@
 import os
 
 
-def read_input(filename):
+def read_input(filename: str):
+    """
+    Reads input from a file
+    :param filename: the file to read from
+    :return: a list of frequencies represented by integers
+    """
     frequencies = []
     with open(filename, 'r') as file:
         for line in file:
