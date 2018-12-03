@@ -3,35 +3,12 @@ from parse import *
 
 
 class ElfRectangle:
-    def __init__(self, id, left, top, width, height):
-        self.id = id
+    def __init__(self, rect_id, left, top, width, height):
+        self.rect_id = rect_id
         self.left = left
         self.top = top
         self.width = width
         self.height = height
-
-
-class Coordinate:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
-    def __hash__(self):
-        return self.x * 3 + self.y * 5
-
-
-class Grid:
-    def __init__(self):
-        self.positions = []
-
-    def add_coord(self, coord: Coordinate):
-        self.positions.append(coord)
-
-    def is_overlap(self, coord: Coordinate):
-        return coord in self.positions
 
 
 # Format: #id @ left,top: widthxheight
