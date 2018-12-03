@@ -5,7 +5,7 @@ def read_input(filename):
     frequencies = []
     with open(filename, 'r') as file:
         for line in file:
-            frequencies.append(line)
+            frequencies.append(line.strip())
 
     return frequencies
 
@@ -21,7 +21,7 @@ def get_letter_frequencies(word: str) -> dict:
     return frequencies
 
 
-def exactly_x_occurences(word: str, x: int) -> bool:
+def exactly_x_occurrences(word: str, x: int) -> bool:
     frequencies = get_letter_frequencies(word)
     for char in frequencies:
         if frequencies[char] == x:
@@ -34,7 +34,7 @@ def get_checksum(words):
     exactly_two = 0
     exactly_three = 0
     for word in words:
-        if exactly_x_occurences(word, 2):
+        if exactly_x_occurrences(word, 2):
             exactly_two += 1
 
         if exactly_x_occurences(word, 3):
