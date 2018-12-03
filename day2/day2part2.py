@@ -3,6 +3,13 @@ from day2.day2part1 import read_input
 
 
 def remove_differing_character(word1: str, word2: str) -> str:
+    """
+    Removes any characters which are at the same index of word1 and word2, but which
+    are different
+    :param word1: the first word to check
+    :param word2: the second word to check
+    :return: a string with any differing characters absent
+    """
     result = ""
     for index, char in enumerate(word1):
         if char == word2[index]:
@@ -12,7 +19,13 @@ def remove_differing_character(word1: str, word2: str) -> str:
 
 
 def differ_count(word1: str, word2: str) -> int:
-    # assumes words are of equal length
+    """
+    The number of characters which are different at the same indices of word1 and
+    word2. Assumes words are of equal length.
+    :param word1: the first word to check
+    :param word2: the second word to check
+    :return: the number  of differing indices in these two words
+    """
     difference = 0
     for index, char in enumerate(word1):
         if char != word2[index]:
@@ -22,13 +35,11 @@ def differ_count(word1: str, word2: str) -> int:
 
 
 def get_close_words(words):
-    # words = sorted(words)
-    # for index in range(len(words) - 1):
-    #     if differ_count(words[index], words[index + 1]) <= 1:
-    #         return words[index], words[index + 1]
-    #
-    # return None
-
+    """
+    Gets the words in the given list which differ by exactly one character
+    :param words: the words to compare
+    :return: a tuple of the two close words
+    """
     for word1 in words:
         for word2 in words:
             if differ_count(word1, word2) == 1:
