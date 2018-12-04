@@ -81,6 +81,21 @@ def main():
 
     print("The ID multiplied by the minute is {}".format(result))
 
+    best_minute = -1
+    best_guard = 0
+    best_count = 0
+    for guard in shifts_worked:
+        entries = shifts_worked[guard]
+        for minute in entries:
+            if entries[minute] > best_count:
+                best_count = entries[minute]
+                best_minute = minute
+                best_guard = guard
+
+    result = best_guard * best_minute
+
+    print("The ID multiplied by the minute is {}".format(result))
+
 
 if __name__ == '__main__':
     main()
