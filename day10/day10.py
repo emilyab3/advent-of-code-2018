@@ -3,6 +3,9 @@ from parse import *
 
 
 class Point:
+    """
+    Represents a moving point with both a position and a velocity
+    """
     def __init__(self, x, y, x_vel, y_vel):
         self.x = x
         self.y = y
@@ -11,6 +14,9 @@ class Point:
 
 
 def read_input(filename: str):
+    """
+    Reads input from the given file and returns a list of the Points contained therein
+    """
     points = []
     with open(filename, 'r') as file:
         for line in file:
@@ -21,6 +27,9 @@ def read_input(filename: str):
 
 
 def parse_point(point):
+    """
+    Returns the Point object representation of the given line
+    """
     parsed = parse("position=<{x}, {y}> velocity=<{x_vel}, {y_vel}>", point)
     x = int(parsed["x"].strip())
     y = int(parsed["y"].strip())
@@ -31,6 +40,9 @@ def parse_point(point):
 
 
 def progress_points(points):
+    """
+    Moves each point by one step using their velocities
+    """
     new_points = []
     for point in points:
         new_point = Point(point.x + point.x_vel, point.y + point.y_vel, point.x_vel, point.y_vel)
@@ -39,6 +51,10 @@ def progress_points(points):
 
 
 def draw_scatter(points, width, height, min_x, min_y):
+    """
+    Prints a visual representation of the given points, where '#' represents a Point
+    and '.' represents an empty position
+    """
     rows = []
     for y in range(height + 1):
         row = []
@@ -60,6 +76,7 @@ def main():
     last_area = 999999999
     seconds = 0
     while True:
+        # to compare to the previous positions
         new_points = progress_points(points)
 
         min_x = min([point.x for point in new_points])
@@ -71,6 +88,7 @@ def main():
         height = max_y - min_y
         area = width + height
 
+        # the message will have the lowest area of all possible configurations
         if area > last_area:
             draw_scatter(points, width, height, min_x, min_y)
             break
