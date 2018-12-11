@@ -1,17 +1,20 @@
-import os
-from day07.day7part1 import read_input, remove_mappings, get_starters
+from day07.day7part1 import *
 
 
 OFFSET = 64
-TIME = 60
-WORKERS = 5
 
 
 def get_next_topo_options(steps):
+    """
+    Returns the next steps available to be completed in topological order
+    """
     return sorted(get_starters(steps))
 
 
 def get_step_time(step):
+    """
+    Returns the time required to complete the given step
+    """
     return TIME + ord(step) - OFFSET
 
 
