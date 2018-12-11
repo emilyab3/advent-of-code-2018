@@ -8,7 +8,7 @@ MAGIC = 23
 
 def main():
     game = blist()  # speedy boi for part 2
-    game.append(0)
+    game.append(0)  # first marbles
 
     scores = [0 for _ in range(PLAYERS)]
 
@@ -20,14 +20,19 @@ def main():
             game.append(current_marble)
             current_index = 1
 
+        # the case where scoring must be done
         elif current_marble % MAGIC == 0:
             scores[current_player] += current_marble
+
             to_remove = current_index - 7
-            real = len(game) + to_remove if to_remove < 0 else to_remove
             removed = game.pop(to_remove)
             scores[current_player] += removed
+
+            real = len(game) + to_remove if to_remove < 0 else to_remove
             current_index = real
 
+        # typical case -> insert marble between those one and two places away from
+        # the current one
         else:
             new_position = (current_index + 2)
             if new_position != len(game):
