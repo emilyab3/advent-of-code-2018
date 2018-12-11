@@ -1,5 +1,5 @@
 import os
-from day4.day4part1 import read_input, get_guard_movements
+from day04.day4part1 import read_input, get_guard_movements
 
 
 def most_consistently_sleepy_guard(shifts_worked):

@@ -1,5 +1,5 @@
 import os
-from day2.day2part1 import read_input
+from day02.day2part1 import read_input
 
 
 def remove_differing_character(word1: str, word2: str) -> str:

@@ -1,5 +1,5 @@
 import os
-from day7.day7part1 import read_input, remove_mappings, get_starters
+from day07.day7part1 import read_input, remove_mappings, get_starters
 
 
 OFFSET = 64

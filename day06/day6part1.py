@@ -3,16 +3,10 @@ import os
 
 def read_input(filename: str):
     """
-    Reads input from the given file and returns a mapping from the datetimes in the
-    file to their corresponding messages
-    :param filename: the file to read
-    :return: the mapping from datetimes to messages
+    Reads input from the given file and returns a list of tuples of the coordinates
+    contained therein, as well as two tuples containing the min and max x and y values
     """
     coords = []
-    min_x = 1000
-    min_y = 1000
-    max_x = -1000
-    max_y = -1000
     with open(filename, 'r') as file:
         for line in file:
             x, _, y = line.strip().partition(", ")
@@ -20,19 +14,25 @@ def read_input(filename: str):
             y = int(y)
             coords.append((x, y))
 
-            min_x = x if x < min_x else min_x
-            min_y = y if y < min_y else min_y
-            max_x = x if x > max_x else max_x
-            max_y = y if y > max_y else max_y
+        min_x = min(coord[0] for coord in coords)
+        min_y = min(coord[1] for coord in coords)
+        max_x = max(coord[0] for coord in coords)
+        max_y = max(coord[1] for coord in coords)
 
     return coords, (min_x, min_y), (max_x, max_y)
 
 
-def manhattan(a, b):
-    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+def manhattan(coord1, coord2):
+    """
+    Returns the manhattan distance between the given two coordinates
+    """
+    return abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1])
 
 
 def bounded(coord, coords):
+    """
+    Determines whether the given coordinate is bounded by the list of coordinates
+    """
     xmax_bound = False
     ymax_bound = False
     xmin_bound = False
@@ -52,14 +52,22 @@ def bounded(coord, coords):
     return xmax_bound and ymax_bound and xmin_bound and ymin_bound
 
 
-def are_equal(x, y):
-    return x[0] == y[0] and x[1] == y[1]
+def are_equal(coord1, coord2):
+    """
+    Returns True if the two given coordinates have equal x and y coordinates, False
+    otherwise
+    """
+    return coord1[0] == coord2[0] and coord1[1] == coord2[1]
 
 
-def get_closest(x, coords):
+def get_closest(start, coords):
+    """
+    Determines the coordinate in coords which is closest to the start coordinate.
+    Returns None if two coordinates are equally close.
+    """
     distances = {}
     for coord in coords:
-        distances[coord] = manhattan(x, coord)
+        distances[coord] = manhattan(start, coord)
 
     lowest = min(distances.values())
     lowest_count = 0

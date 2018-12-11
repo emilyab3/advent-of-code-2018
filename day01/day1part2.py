@@ -1,5 +1,5 @@
 import os
-from day1.day1part1 import read_input
+from day01.day1part1 import read_input
 
 
 def first_recurring_frequency(frequencies):

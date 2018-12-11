@@ -1,5 +1,5 @@
 import os
-from day3.day3part1 import read_input, build_grid
+from day03.day3part1 import read_input, build_grid
 
 
 def one_true_elf(rectangles):

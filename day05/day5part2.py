@@ -1,5 +1,5 @@
 import os
-from day5.day5part1 import read_input, process_polymer
+from day05.day5part1 import read_input, process_polymer
 
 
 def get_components(polymer: str):

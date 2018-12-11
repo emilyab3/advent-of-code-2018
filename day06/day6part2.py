@@ -1,5 +1,5 @@
 import os
-from day6.day6part1 import read_input, manhattan
+from day06.day6part1 import read_input, manhattan
 
 
 MAX_TOTAL_DISTANCE = 10000
